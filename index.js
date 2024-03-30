@@ -5,19 +5,23 @@ const port = 3000;
 
 const now = new Date();
 const day = now.getDay(); // returns a number representing the day of the week, starting with 0 for Sunday
-let tagline = "";
+let type = "a weekday";
+let adv = "it's time to work hard";
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   if (day === 0 || day === 6) {
-    tagline = "Hey! It's the weekend, it's time to have fun";
-  } else {
-    tagline = "Hey! It's a weekday, it's time to work hard";
+    type = "the weekend";
+    adv = "it's time to have fun";
   }
   console.log("get activated");
-  res.render("index.ejs", { tagline });
+  //   res.render("index.ejs", { dayType: type, advice: adv });
+  res.render("index.ejs", {
+    dayType: type,
+    advice: adv,
+  });
 });
 
 app.listen(port, () => {
